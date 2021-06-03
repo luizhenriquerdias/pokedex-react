@@ -20,3 +20,8 @@ body {
 .montserrat {
 	font-family: "Montserrat Alternates", sans-serif;
 }
+
+main {
+	min-height: 100vh;
+	background: linear-gradient(#D3CCE3, #E9E4F0);
+}
