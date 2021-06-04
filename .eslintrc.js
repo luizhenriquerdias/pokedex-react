@@ -4,10 +4,7 @@ module.exports = {
 		es2021: true,
 		node: true
 	},
-	extends: [
-		'plugin:react/recommended',
-		'airbnb'
-	],
+	extends: ['plugin:react/recommended', 'airbnb'],
 	parserOptions: {
 		ecmaFeatures: {
 			jsx: true
@@ -15,9 +12,7 @@ module.exports = {
 		ecmaVersion: 12,
 		sourceType: 'module'
 	},
-	plugins: [
-		'react'
-	],
+	plugins: ['react', '@emotion'],
 	rules: {
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
@@ -25,6 +20,8 @@ module.exports = {
 		'react/react-in-jsx-scope': 'off',
 		'react/prop-types': 'off',
 		'react/jsx-props-no-spreading': 'off',
+
+		'jsx-a11y/alt-text': 'off',
 
 		'no-param-reassign': 'off',
 		'import/first': 'off',
@@ -45,11 +42,10 @@ module.exports = {
 		'no-constant-condition': 0,
 		'no-tabs': 0,
 		'no-bitwise': 0,
-		indent: ['error', 'tab', { SwitchCase: 1, ignoredNodes: ['TemplateLiteral'] }],
+		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'arrow-parens': ['error', 'as-needed'],
 		'func-names': 0,
 		'template-curly-spacing': 'off',
-		'nonblock-statement-body-position': ['error', 'below'],
 		curly: ['error', 'multi-or-nest'],
 		'no-unused-vars': 'warn',
 		'no-underscore-dangle': 0,
