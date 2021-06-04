@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { index } from '../api';
 import Card from '../components/Card';
+import Header from '../components/Header';
 
 const GridContainer = css`
 	display: flex;
@@ -16,7 +17,7 @@ export default function Home() {
 
 	return (
 		<>
-			<h1>Pokédex React</h1>
+			<Header />
 			<div css={GridContainer}>
 				{data?.results.map(({ name }) => (
 					<Card key={name} name={name} />

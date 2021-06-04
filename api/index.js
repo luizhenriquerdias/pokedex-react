@@ -19,5 +19,5 @@ api.interceptors.response.use(clearData, e => e);
 const getFullUrl = url => `${api.defaults.baseURL}/${url}`;
 const useSWR = url => swr(getFullUrl(url), api.get(url));
 
-export const index = (page = 0, limit = 20) => useSWR(`pokemon?limit=${limit}&offset=${page * limit}`);
+export const index = (page = 0, limit = 10) => useSWR(`pokemon?limit=${limit}&offset=${page * limit}`);
 export const show = name => useSWR(`pokemon/${name}`);

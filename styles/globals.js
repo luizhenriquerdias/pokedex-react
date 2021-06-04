@@ -5,8 +5,8 @@ export const globalStyles = (
 		styles={css`
 			html,
 			body {
-				font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
-					Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+				font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
+					Droid Sans, Helvetica Neue, sans-serif;
 			}
 
 			* {
@@ -17,7 +17,22 @@ export const globalStyles = (
 
 			main {
 				min-height: 100vh;
-				background: linear-gradient(#d3cce3, #e9e4f0);
+			}
+
+			h1 {
+				font-size: 3rem;
+				font-family: 'Poppins', sans-serif;
+			}
+
+			h2 {
+				font-size: 1.1rem;
+				font-family: 'Montserrat Alternates', sans-serif;
+			}
+
+			h1,
+			h2,
+			h3 {
+				color: white;
 			}
 		`}
 	/>
