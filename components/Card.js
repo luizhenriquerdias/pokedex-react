@@ -1,7 +1,9 @@
 import { css } from '@emotion/react';
+import { useContext } from 'react';
 import { show } from '../api';
 import Chip from './Atoms/Chip';
 import Pokeball from '../assets/pokeball.svg';
+import { ThemeContext } from '../providers/theme';
 
 const Container = css`
 	margin: 0.6rem;
@@ -35,12 +37,28 @@ const Id = css`
 	z-index: 1;
 	right: 12px;
 	font-weight: bold;
-	color: rgba(0, 0, 0, 0.25);
 `;
 
-const getBackgroundStr = hue => `background: linear-gradient(135deg, hsl(${hue}, 65%, 60%), hsl(${hue}, 65%, 50%))}`;
+const getBackgroundStr = hue =>
+	`background: linear-gradient(135deg, hsl(${hue}, 65%, 60%), hsl(${hue}, 65%, 50%))}`;
 
-const getBackgroundColorByType = type => {
+const getHsl = hue => `hsl(${hue}, 65%, 60%)`;
+
+const getColorByType = type => {
+	switch (type) {
+		case 'grass':
+			return getHsl(166);
+		case 'water':
+			return getHsl(190);
+		case 'fire':
+			return getHsl(25);
+		default:
+			return 'white';
+	}
+};
+
+const getBackgroundColorByType = (theme, type) => {
+	if (theme.name === 'dark') return 'background: #434343';
 	switch (type) {
 		case 'grass':
 			return getBackgroundStr(166);
@@ -53,23 +71,52 @@ const getBackgroundColorByType = type => {
 	}
 };
 
+const getColor = (theme, type) => {
+	if (theme.name === 'light') return 'white';
+	return getColorByType(type.name);
+};
+
 export default function Card({ name }) {
 	const { data } = show(name);
+	const { theme } = useContext(ThemeContext);
+
 	if (!data) return <span>{name}</span>;
 	return (
-		<div css={css([Container, getBackgroundColorByType(data.types[0].type.name)])}>
-			<img css={Img} src={data.sprites.other['official-artwork'].front_default} />
+		<div
+			css={css([
+				Container,
+				getBackgroundColorByType(theme, data.types[0].type.name)
+			])}
+		>
+			<img
+				css={Img}
+				src={data.sprites.other['official-artwork'].front_default}
+			/>
 			<img css={PokeballStyle} src={Pokeball} />
 			<h2
 				css={css`
 					margin: 8px 0;
+					color: ${getColor(theme, data.types[0].type)};
 				`}
 			>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
 			</h2>
-			<span css={Id}>{`#${String(data.id).padStart(4, '0')}`}</span>
+			<span
+				css={css([
+					Id,
+					css`
+						color: rgba(0, 0, 0, ${theme.name === 'dark' ? 1 : 0.4});
+					`
+				])}
+			>
+				{`#${String(data.id).padStart(4, '0')}`}
+			</span>
 			{data.types.map(({ type, slot }) => (
-				<Chip key={slot} label={type.name} />
+				<Chip
+					labelColor={getColor(theme, data.types[0].type)}
+					key={slot}
+					label={type.name}
+				/>
 			))}
 		</div>
 	);

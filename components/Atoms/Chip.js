@@ -13,10 +13,19 @@ const Style = css([
 		border-radius: 12px;
 	`
 ]);
-export default function Chip({ label }) {
+export default function Chip({ label, labelColor }) {
 	return (
 		<div>
-			<span css={Style}>{label}</span>
+			<span
+				css={css([
+					Style,
+					css`
+						color: ${labelColor || 'white'};
+					`
+				])}
+			>
+				{label}
+			</span>
 		</div>
 	);
 }

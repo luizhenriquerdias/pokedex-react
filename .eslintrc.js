@@ -45,6 +45,7 @@ module.exports = {
 		indent: ['error', 'tab', { SwitchCase: 1 }],
 		'arrow-parens': ['error', 'as-needed'],
 		'func-names': 0,
+		'implicit-arrow-linebreak': 'off',
 		'template-curly-spacing': 'off',
 		curly: ['error', 'multi-or-nest'],
 		'no-unused-vars': 'warn',

@@ -8,7 +8,7 @@ const Container = css`
 	height: 50px;
 	border-radius: 16px;
 	color: #aaa;
-	box-shadow: 0 0 5px grey;
+	box-shadow: 0 0 10px grey;
 `;
 
 const Icon = css`

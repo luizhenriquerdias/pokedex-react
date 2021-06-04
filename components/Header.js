@@ -1,8 +1,10 @@
 import { css } from '@emotion/react';
+import { useContext } from 'react';
 import SearchBar from './Atoms/SearchBar';
 import ToggleTheme from './Atoms/ToggleTheme';
 import Pokeball from '../assets/pokeball.svg';
 import { FlexCenter } from '../styles/classes';
+import { ThemeContext } from '../providers/theme';
 
 const HeaderStyle = css([
 	FlexCenter,
@@ -29,12 +31,24 @@ const AbsoluteImage = css`
 `;
 
 export default function Header() {
+	const { theme, changeTheme } = useContext(ThemeContext);
+
 	return (
 		<>
-			<div css={HeaderStyle}>
+			<div
+				css={css([
+					HeaderStyle,
+					css`
+						background: ${theme.colors.header};
+					`
+				])}
+			>
 				<img css={AbsoluteImage} src={Pokeball} />
 				<div css={AbsoluteRight}>
-					<ToggleTheme />
+					<ToggleTheme
+						onChange={changeTheme}
+						defaultChecked={theme.name === 'light'}
+					/>
 				</div>
 				<h1
 					css={css`
