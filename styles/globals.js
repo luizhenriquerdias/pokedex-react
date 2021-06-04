@@ -5,8 +5,9 @@ export const globalStyles = (
 		styles={css`
 			html,
 			body {
-				font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen, Ubuntu, Cantarell, Fira Sans,
-					Droid Sans, Helvetica Neue, sans-serif;
+				overflow: hidden;
+				font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+					Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
 			}
 
 			* {
@@ -16,7 +17,8 @@ export const globalStyles = (
 			}
 
 			main {
-				min-height: 100vh;
+				height: 100vh;
+				overflow-y: auto;
 			}
 
 			h1 {
@@ -25,6 +27,11 @@ export const globalStyles = (
 			}
 
 			h2 {
+				font-size: 2rem;
+				font-family: 'Montserrat Alternates', sans-serif;
+			}
+
+			h3 {
 				font-size: 1.1rem;
 				font-family: 'Montserrat Alternates', sans-serif;
 			}

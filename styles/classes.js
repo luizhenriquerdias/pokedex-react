@@ -13,6 +13,10 @@ export const JustifyCenter = css`
 	justify-content: center;
 `;
 
+export const SpaceBetween = css`
+	justify-content: space-between;
+`;
+
 export const FlexCenter = css([Flex, AlignCenter, JustifyCenter]);
 
 export const Poppins = css`
@@ -21,4 +25,8 @@ export const Poppins = css`
 
 export const Montserrat = css`
 	font-family: 'Montserrat Alternates', sans-serif;
+`;
+
+export const TextBold = css`
+	font-weight: bold;
 `;

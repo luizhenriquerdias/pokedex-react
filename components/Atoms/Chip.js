@@ -10,12 +10,17 @@ const Style = css([
 		padding: 4px 8px;
 		color: white;
 		margin-bottom: 8px;
+		margin-right: 8px;
 		border-radius: 12px;
 	`
 ]);
-export default function Chip({ label, labelColor }) {
+export default function Chip({ label, labelColor, inline }) {
 	return (
-		<div>
+		<div
+			css={css`
+				display: ${inline ? 'inline' : 'block'};
+			`}
+		>
 			<span
 				css={css([
 					Style,

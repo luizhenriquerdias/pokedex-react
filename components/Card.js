@@ -4,6 +4,7 @@ import { show } from '../api';
 import Chip from './Atoms/Chip';
 import Pokeball from '../assets/pokeball.svg';
 import { ThemeContext } from '../providers/theme';
+import { getBackgroundColorByType, getColor } from '../util/functions';
 
 const Container = css`
 	margin: 0.6rem;
@@ -13,6 +14,11 @@ const Container = css`
 	cursor: pointer;
 	padding: 8px 16px;
 	overflow: hidden;
+	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+
+	&:hover {
+		transform: scale(1.05, 1.05);
+	}
 `;
 
 const Img = css`
@@ -39,50 +45,15 @@ const Id = css`
 	font-weight: bold;
 `;
 
-const getBackgroundStr = hue =>
-	`background: linear-gradient(135deg, hsl(${hue}, 65%, 60%), hsl(${hue}, 65%, 50%))}`;
-
-const getHsl = hue => `hsl(${hue}, 65%, 60%)`;
-
-const getColorByType = type => {
-	switch (type) {
-		case 'grass':
-			return getHsl(166);
-		case 'water':
-			return getHsl(190);
-		case 'fire':
-			return getHsl(25);
-		default:
-			return 'white';
-	}
-};
-
-const getBackgroundColorByType = (theme, type) => {
-	if (theme.name === 'dark') return 'background: #434343';
-	switch (type) {
-		case 'grass':
-			return getBackgroundStr(166);
-		case 'water':
-			return getBackgroundStr(190);
-		case 'fire':
-			return getBackgroundStr(25);
-		default:
-			return getBackgroundStr(0);
-	}
-};
-
-const getColor = (theme, type) => {
-	if (theme.name === 'light') return 'white';
-	return getColorByType(type.name);
-};
-
-export default function Card({ name }) {
+export default function Card({ name, onClick }) {
 	const { data } = show(name);
 	const { theme } = useContext(ThemeContext);
 
 	if (!data) return <span>{name}</span>;
 	return (
+		// eslint-disable-next-line
 		<div
+			onClick={onClick ? () => onClick(data) : () => {}}
 			css={css([
 				Container,
 				getBackgroundColorByType(theme, data.types[0].type.name)
@@ -93,14 +64,14 @@ export default function Card({ name }) {
 				src={data.sprites.other['official-artwork'].front_default}
 			/>
 			<img css={PokeballStyle} src={Pokeball} />
-			<h2
+			<h3
 				css={css`
 					margin: 8px 0;
 					color: ${getColor(theme, data.types[0].type)};
 				`}
 			>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
-			</h2>
+			</h3>
 			<span
 				css={css([
 					Id,
