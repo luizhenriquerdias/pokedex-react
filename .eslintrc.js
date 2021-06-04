@@ -21,6 +21,7 @@ module.exports = {
 		'react/prop-types': 'off',
 		'react/jsx-props-no-spreading': 'off',
 
+		'jsx-a11y/label-has-associated-control': 'off',
 		'jsx-a11y/alt-text': 'off',
 
 		'no-param-reassign': 'off',
