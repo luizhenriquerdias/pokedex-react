@@ -6,29 +6,38 @@ import Pokeball from '../assets/pokeball.svg';
 import { FlexCenter } from '../styles/classes';
 import { PokemonsContext } from '../providers/pokemons';
 
-const HeaderStyle = css([
-	FlexCenter,
-	css`
-		background: linear-gradient(135deg, #f85032, #e73827);
+const Styles = {
+	HeaderStyle: theme => css`
+		${FlexCenter};
 		overflow: hidden;
 		min-height: 200px;
 		position: relative;
+		background: ${theme.colors.header};
+	`,
+
+	AbsoluteRight: css`
+		position: absolute;
+		top: 16px;
+		right: 16px;
+	`,
+
+	AbsoluteImage: css`
+		position: absolute;
+		height: 400px;
+		right: 30px;
+		top: -30px;
+		z-index: 1;
+	`,
+
+	Title: css`
+		z-index: 5;
+	`,
+
+	SearchBar: css`
+		${FlexCenter};
+		transform: translateY(-50%);
 	`
-]);
-
-const AbsoluteRight = css`
-	position: absolute;
-	top: 16px;
-	right: 16px;
-`;
-
-const AbsoluteImage = css`
-	position: absolute;
-	height: 400px;
-	right: 30px;
-	top: -30px;
-	z-index: 1;
-`;
+};
 
 export default function Header() {
 	const theme = useTheme();
@@ -36,37 +45,17 @@ export default function Header() {
 
 	return (
 		<Fragment>
-			<div
-				css={css([
-					HeaderStyle,
-					css`
-						background: ${theme.colors.header};
-					`
-				])}
-			>
-				<img css={AbsoluteImage} src={Pokeball} />
-				<div css={AbsoluteRight}>
+			<div css={Styles.HeaderStyle(theme)}>
+				<img css={Styles.AbsoluteImage} src={Pokeball} />
+				<div css={Styles.AbsoluteRight}>
 					<Switch
 						onChange={theme.change}
 						defaultChecked={theme.name === 'light'}
 					/>
 				</div>
-				<h1
-					css={css`
-						z-index: 5;
-					`}
-				>
-					Pokedex React
-				</h1>
+				<h1 css={Styles.Title}>Pokedex React</h1>
 			</div>
-			<div
-				css={css([
-					FlexCenter,
-					css`
-						transform: translateY(-50%);
-					`
-				])}
-			>
+			<div css={Styles.SearchBar}>
 				<SearchBar onSearch={setSearch} />
 			</div>
 		</Fragment>

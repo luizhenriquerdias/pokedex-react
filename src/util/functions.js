@@ -72,3 +72,14 @@ export const getBackgroundColorByType = (theme, type) => {
 	if (theme.name === 'dark') hsl = generateHSL(0, 0, 26);
 	return getBackgroundStr(hsl);
 };
+
+export const getPokemonType = pokemon => pokemon.types[0].type.name;
+
+export const getPokemonName = pokemon =>
+	pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+
+export const getPokemonId = pokemon =>
+	`#${String(pokemon.id).padStart(4, '0')}`;
+
+export const getPokemonSprite = pokemon =>
+	pokemon.sprites.other['official-artwork'].front_default;

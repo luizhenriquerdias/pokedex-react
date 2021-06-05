@@ -8,12 +8,20 @@ import Header from '../components/Header';
 import { PokemonsContext } from '../providers/pokemons';
 import { Flex, JustifyCenter } from '../styles/classes';
 
-const GridContainer = css`
-	padding-bottom: 56px;
-	> div {
-		flex: 1 1 200px;
-	}
-`;
+const Styles = {
+	GridContainer: css`
+		${Flex};
+		${JustifyCenter};
+		padding-bottom: 56px;
+		> div {
+			flex: 1 1 200px;
+		}
+	`,
+
+	Main: theme => css`
+		background: ${theme.colors.background};
+	`
+};
 
 export default function Home() {
 	const theme = useTheme();
@@ -33,13 +41,9 @@ export default function Home() {
 					<ModalPokemon pokemon={pokemon} close={() => onClick(null)} />
 				</ClientOnlyPortal>
 			)}
-			<main
-				css={css`
-					background: ${theme.colors.background};
-				`}
-			>
+			<main css={Styles.Main(theme)}>
 				<Header />
-				<div css={css([GridContainer, Flex, JustifyCenter])}>
+				<div css={Styles.GridContainer}>
 					{pokemons?.slice(0, 20).map(poke => (
 						<Card key={poke.name} name={poke.name} onClick={onClick} />
 					))}

@@ -11,86 +11,90 @@ import Body from './Body';
 import Pokeball from '../../assets/pokeball.svg';
 import Button from '../Atoms/Button';
 import Chip from '../Atoms/Chip';
-import { getBackgroundColorByType, getColor } from '../../util/functions';
+import {
+	getBackgroundColorByType,
+	getColor,
+	getPokemonId,
+	getPokemonName,
+	getPokemonType
+} from '../../util/functions';
 
-const cssDialog = css`
-	position: absolute;
-	top: 0;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 999;
-	background: rgba(0, 0, 0, 0.5);
-	backdrop-filter: blur(2px);
-`;
+const Styles = {
+	Backdrop: css`
+		${FlexCenter}
+		position: absolute;
+		top: 0;
+		bottom: 0;
+		left: 0;
+		right: 0;
+		z-index: 999;
+		background: rgba(0, 0, 0, 0.5);
+		backdrop-filter: blur(2px);
+	`,
 
-const cssContainer = css`
-	position: relative;
-	border-radius: 20px;
-	width: 400px;
-	height: 90%;
-	overflow: hidden;
-`;
+	Container: (theme, type) => css`
+		position: relative;
+		border-radius: 20px;
+		width: 400px;
+		height: 90%;
+		overflow: hidden;
+		background: ${getBackgroundColorByType(theme, type)};
+	`,
 
-const cssCloseBtn = css`
-	position: absolute;
-	top: 8px;
-	right: 4px;
-`;
+	CloseBtn: css`
+		position: absolute;
+		top: 8px;
+		right: 4px;
+	`,
 
-const cssPokeball = css`
-	position: absolute;
-	height: 200px;
-	right: -30px;
-	top: 40px;
-`;
+	Pokeball: css`
+		position: absolute;
+		height: 200px;
+		right: -30px;
+		top: 40px;
+	`,
 
-const cssPokemon = css`
-	position: absolute;
-	z-index: 5;
-	top: 90px;
-	left: 0;
-	right: 0;
-	margin-left: auto;
-	margin-right: auto;
-	height: 200px;
-`;
+	Pokemon: css`
+		position: absolute;
+		z-index: 5;
+		top: 90px;
+		left: 0;
+		right: 0;
+		margin-left: auto;
+		margin-right: auto;
+		height: 200px;
+	`,
 
-const cssTitleBar = css`
-	padding: 8px 16px;
-	margin-top: 24px;
-`;
+	TitleBar: css`
+		${Flex};
+		${SpaceBetween};
+		padding: 8px 16px;
+		margin-top: 24px;
+	`,
+
+	Title: (theme, type) => css`
+		margin-bottom: 4px;
+		color: ${getColor(theme, type)};
+	`
+};
 
 export default function ModalPokemon({ pokemon, close }) {
 	const theme = useTheme();
 	return (
-		<div css={css([cssDialog, FlexCenter])}>
-			<div
-				css={css([
-					cssContainer,
-					`background: ${getBackgroundColorByType(
-						theme,
-						pokemon.types[0].type.name
-					)}`
-				])}
-			>
-				<div css={cssCloseBtn}>
+		<div css={Styles.Backdrop}>
+			<div css={Styles.Container(theme, getPokemonType(pokemon))}>
+				<div css={Styles.CloseBtn}>
 					<Button icon={faTimes} onClick={close} />
 				</div>
 				<img
-					css={cssPokemon}
+					css={Styles.Pokemon}
 					src={pokemon.sprites.other['official-artwork'].front_default}
 				/>
-				<img css={cssPokeball} src={Pokeball} />
-				<div css={css([Flex, SpaceBetween, cssTitleBar])}>
+				<img css={Styles.Pokeball} src={Pokeball} />
+				<div css={Styles.TitleBar}>
 					<div>
-						<h2
-							css={css`
-								margin-bottom: 4px;
-								color: ${getColor(theme, pokemon.types[0].type.name)};
-							`}
-						>
-							{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
+						<h2 css={Styles.Title(theme, getPokemonType(pokemon))}>
+							{getPokemonName(pokemon)}
 						</h2>
 						{pokemon.types.map(({ type, slot }) => (
 							<Chip
@@ -102,7 +106,7 @@ export default function ModalPokemon({ pokemon, close }) {
 						))}
 					</div>
 					<span css={css([FlexCenter, Montserrat, TextBold])}>
-						{`#${String(pokemon.id).padStart(4, '0')}`}
+						{getPokemonId(pokemon)}
 					</span>
 				</div>
 				<Body />

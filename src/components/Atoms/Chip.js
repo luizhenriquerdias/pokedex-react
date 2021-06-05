@@ -1,9 +1,13 @@
 import { css } from '@emotion/react';
 import { Poppins } from '../../styles/classes';
 
-const Style = css([
-	Poppins,
-	css`
+const Styles = {
+	Container: inline => css`
+		display: ${inline ? 'inline' : 'block'};
+	`,
+
+	Label: (labelColor = 'white') => css`
+		${Poppins}
 		font-size: 0.75rem;
 		display: inline-block;
 		background: rgba(255, 255, 255, 0.2);
@@ -12,25 +16,14 @@ const Style = css([
 		margin-bottom: 8px;
 		margin-right: 8px;
 		border-radius: 12px;
+		color: ${labelColor};
 	`
-]);
+};
+
 export default function Chip({ label, labelColor, inline }) {
 	return (
-		<div
-			css={css`
-				display: ${inline ? 'inline' : 'block'};
-			`}
-		>
-			<span
-				css={css([
-					Style,
-					css`
-						color: ${labelColor || 'white'};
-					`
-				])}
-			>
-				{label}
-			</span>
+		<div css={Styles.Container(inline)}>
+			<span css={Styles.Label(labelColor)}>{label}</span>
 		</div>
 	);
 }

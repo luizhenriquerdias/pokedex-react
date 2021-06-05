@@ -5,22 +5,27 @@ import { AlignCenter, Flex, SpaceBetween } from '../styles/classes';
 import Paginator from './Paginator';
 import LinkedIn from '../assets/linkedin.svg';
 
-const cssFooter = css`
-	background: rgba(255, 255, 255, 0.2);
-	backdrop-filter: blur(4px);
-	z-index: 500;
-	position: fixed;
-	bottom: 0;
-	width: 100%;
-	padding: 0 36px;
-`;
+const Styles = {
+	Footer: css`
+		${Flex};
+		${AlignCenter};
+		${SpaceBetween};
+		background: rgba(255, 255, 255, 0.2);
+		backdrop-filter: blur(4px);
+		z-index: 500;
+		position: fixed;
+		bottom: 0;
+		width: 100%;
+		padding: 0 36px;
+	`,
 
-const cssLinkedIn = css`
-	height: 24px;
-	background: white;
-	border-radius: 4px;
-	cursor: pointer;
-`;
+	LinkedIn: css`
+		height: 24px;
+		background: white;
+		border-radius: 4px;
+		cursor: pointer;
+	`
+};
 
 export default function Footer() {
 	const { page, totalPages, nextPage, previousPage } =
@@ -31,7 +36,7 @@ export default function Footer() {
 	};
 
 	return (
-		<div css={css([cssFooter, Flex, AlignCenter, SpaceBetween])}>
+		<div css={Styles.Footer}>
 			<div />
 			<Paginator
 				page={page}
@@ -39,7 +44,7 @@ export default function Footer() {
 				nextPage={nextPage}
 				previousPage={previousPage}
 			/>
-			<img css={cssLinkedIn} src={LinkedIn} onClick={goToLinkedIn} />
+			<img css={Styles.LinkedIn} src={LinkedIn} onClick={goToLinkedIn} />
 		</div>
 	);
 }

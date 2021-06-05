@@ -1,13 +1,13 @@
-import styled from '@emotion/styled';
+import { css } from '@emotion/react';
 import { useState } from 'react';
 
 const Styles = {
-	Label: styled.label`
+	Label: checked => css`
 		display: inline-block;
 		height: 1em;
 		width: 2em;
 		border-radius: 1em;
-		background: ${({ checked }) => (checked ? '#68c151' : '#bdb9a6')};
+		background: ${checked ? '#68c151' : '#bdb9a6'};
 
 		input {
 			opacity: 0;
@@ -46,13 +46,13 @@ export default function Switch({ onChange, defaultChecked }) {
 	};
 
 	return (
-		<Styles.Label checked={checked}>
+		<div css={Styles.Label(checked)}>
 			<input
 				type="checkbox"
 				defaultChecked={defaultChecked}
 				onChange={onSwitch}
 			/>
 			<div />
-		</Styles.Label>
+		</div>
 	);
 }

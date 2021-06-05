@@ -6,6 +6,14 @@ import {
 import { FlexCenter, Montserrat, TextBold } from '../styles/classes';
 import Button from './Atoms/Button';
 
+const Styles = {
+	Text: theme => css`
+		${TextBold};
+		${Montserrat};
+		color: ${theme.colors.inverse};
+	`
+};
+
 export default function Paginator({
 	page,
 	totalPages,
@@ -14,19 +22,9 @@ export default function Paginator({
 }) {
 	const theme = useTheme();
 	return (
-		<div css={css([FlexCenter])}>
+		<div css={FlexCenter}>
 			<Button icon={faChevronLeft} onClick={previousPage} size="2x" />
-			<span
-				css={css([
-					Montserrat,
-					TextBold,
-					css`
-						color: ${theme.colors.inverse};
-					`
-				])}
-			>
-				{`${page}/${totalPages}`}
-			</span>
+			<span css={Styles.Text(theme)}>{`${page}/${totalPages}`}</span>
 			<Button icon={faChevronRight} onClick={nextPage} size="2x" />
 		</div>
 	);
