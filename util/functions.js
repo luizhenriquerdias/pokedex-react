@@ -1,36 +1,74 @@
-const getHsl = hue => `hsl(${hue}, 65%, 60%)`;
+const generateHSL = (hue, saturation = 65, light = 50) => ({
+	hue,
+	saturation,
+	light
+});
 
-const getColorByType = type => {
+const getHSL = type => {
 	switch (type) {
+		case 'normal':
+			return generateHSL(39, 55, 69);
+		case 'fighting':
+			return generateHSL(58, 45);
+		case 'flying':
+			return generateHSL(25);
+		case 'poison':
+			return generateHSL(302, 75);
+		case 'ground':
+			return generateHSL(47, 48);
+		case 'rock':
+			return generateHSL(47, 10);
+		case 'bug':
+			return generateHSL(135, 40);
+		case 'ghost':
+			return generateHSL(292, 23);
+		case 'steel':
+			return generateHSL(310, 5);
+		case 'electric':
+			return generateHSL(59, 70, 60);
+		case 'psychic':
+			return generateHSL(308, 72);
+		case 'ice':
+			return generateHSL(188, 72);
+		case 'dragon':
+			return generateHSL(238, 85);
+		case 'dark':
+			return generateHSL(39, 28, 17);
+		case 'fairy':
+			return generateHSL(303, 50, 76);
+		case 'unknown':
+			return generateHSL(303, 50, 10);
+		case 'shadow':
+			return generateHSL(303, 50, 10);
 		case 'grass':
-			return getHsl(166);
+			return generateHSL(112, 62);
 		case 'water':
-			return getHsl(190);
+			return generateHSL(190);
 		case 'fire':
-			return getHsl(25);
+			return generateHSL(30, 100);
 		default:
-			return 'white';
+			return generateHSL(0);
 	}
 };
+
+const generateHslStr = (hue, saturation, light) =>
+	`hsl(${hue}, ${saturation}%, ${light}%)`;
+
+const getBackgroundStr = ({ hue, saturation, light }) =>
+	`background: linear-gradient(135deg, ${generateHslStr(
+		hue,
+		saturation,
+		light
+	)}, ${generateHslStr(hue, saturation, light + 10)})}`;
 
 export const getColor = (theme, type) => {
-	if (theme.name === 'light') return 'white';
-	return getColorByType(type.name);
+	let hsl = getHSL(type);
+	if (theme.name === 'light') hsl = generateHSL(255, 255, 255);
+	return generateHslStr(hsl.hue, hsl.saturation, hsl.light);
 };
 
-export const getBackgroundStr = hue =>
-	`background: linear-gradient(135deg, hsl(${hue}, 65%, 60%), hsl(${hue}, 65%, 50%))}`;
-
 export const getBackgroundColorByType = (theme, type) => {
-	if (theme.name === 'dark') return 'background: #434343';
-	switch (type) {
-		case 'grass':
-			return getBackgroundStr(166);
-		case 'water':
-			return getBackgroundStr(190);
-		case 'fire':
-			return getBackgroundStr(25);
-		default:
-			return getBackgroundStr(0);
-	}
+	let hsl = getHSL(type);
+	if (theme.name === 'dark') hsl = generateHSL(0, 0, 26);
+	return getBackgroundStr(hsl);
 };

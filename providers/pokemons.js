@@ -28,7 +28,7 @@ export const PokemonsProvider = ({ children }) => {
 		if (data) setAllPokemons(data.results);
 	}, [data]);
 
-	useEffect(() => {
+	const doFilter = () => {
 		const filteredPokemons = allPokemons.filter(poke =>
 			poke.name.toLowerCase().includes(search.trim().toLowerCase())
 		);
@@ -36,7 +36,16 @@ export const PokemonsProvider = ({ children }) => {
 		let { length } = allPokemons;
 		if (search) length = filteredPokemons.length;
 		setTotalPages(Math.floor(length / pageSize) + 1);
-	}, [search, allPokemons, page]);
+	};
+
+	useEffect(() => {
+		doFilter();
+	}, [allPokemons, page]);
+
+	useEffect(() => {
+		setPage(1);
+		doFilter();
+	}, [search]);
 
 	return (
 		<PokemonsContext.Provider

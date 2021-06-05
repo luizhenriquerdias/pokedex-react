@@ -68,7 +68,7 @@ export default function Card({ name, onClick }) {
 			<h3
 				css={css`
 					margin: 8px 0;
-					color: ${getColor(theme, data.types[0].type)};
+					color: ${getColor(theme, data.types[0].type.name)};
 				`}
 			>
 				{name.charAt(0).toUpperCase() + name.slice(1)}
@@ -85,7 +85,7 @@ export default function Card({ name, onClick }) {
 			</span>
 			{data.types.map(({ type, slot }) => (
 				<Chip
-					labelColor={getColor(theme, data.types[0].type)}
+					labelColor={getColor(theme, data.types[0].type.name)}
 					key={slot}
 					label={type.name}
 				/>

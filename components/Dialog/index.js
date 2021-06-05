@@ -88,7 +88,7 @@ export default function Dialog({ pokemon, close }) {
 						<h2
 							css={css`
 								margin-bottom: 4px;
-								color: ${getColor(theme, pokemon.types[0].type)};
+								color: ${getColor(theme, pokemon.types[0].type.name)};
 							`}
 						>
 							{pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1)}
@@ -96,7 +96,7 @@ export default function Dialog({ pokemon, close }) {
 						{pokemon.types.map(({ type, slot }) => (
 							<Chip
 								inline
-								labelColor={getColor(theme, pokemon.types[0].type)}
+								labelColor={getColor(theme, pokemon.types[0].type.name)}
 								key={slot}
 								label={type.name}
 							/>
