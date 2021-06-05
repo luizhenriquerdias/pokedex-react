@@ -25,7 +25,11 @@ module.exports = {
 		'jsx-a11y/alt-text': 'off',
 		'jsx-a11y/click-events-have-key-events': 'off',
 		'jsx-a11y/no-static-element-interactions': 'off',
+		'jsx-a11y/no-noninteractive-element-interactions': 'off',
 
+		'object-curly-newline': 'off',
+		'operator-linebreak': 'off',
+		'function-paren-newline': 'off',
 		'no-param-reassign': 'off',
 		'import/first': 'off',
 		'import/named': 'error',

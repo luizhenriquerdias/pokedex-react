@@ -5,6 +5,7 @@ import ToggleTheme from './Atoms/ToggleTheme';
 import Pokeball from '../assets/pokeball.svg';
 import { FlexCenter } from '../styles/classes';
 import { ThemeContext } from '../providers/theme';
+import { PokemonsContext } from '../providers/pokemons';
 
 const HeaderStyle = css([
 	FlexCenter,
@@ -32,6 +33,7 @@ const AbsoluteImage = css`
 
 export default function Header() {
 	const { theme, changeTheme } = useContext(ThemeContext);
+	const { setSearch } = useContext(PokemonsContext);
 
 	return (
 		<>
@@ -66,7 +68,7 @@ export default function Header() {
 					`
 				])}
 			>
-				<SearchBar />
+				<SearchBar onSearch={setSearch} />
 			</div>
 		</>
 	);

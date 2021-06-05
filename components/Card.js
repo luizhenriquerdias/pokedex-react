@@ -14,6 +14,7 @@ const Container = css`
 	cursor: pointer;
 	padding: 8px 16px;
 	overflow: hidden;
+	max-width: 450px;
 	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
 
 	&:hover {

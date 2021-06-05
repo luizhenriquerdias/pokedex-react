@@ -1,6 +1,7 @@
 import { css } from '@emotion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 import { FlexCenter } from '../../styles/classes';
 
 const Container = css`
@@ -24,11 +25,15 @@ const Input = css`
 	outline: none;
 `;
 
-export default function SearchBar() {
+export default function SearchBar({ onSearch }) {
+	const onInput = ({ target }) => {
+		const { value } = target;
+		(onSearch || (() => {}))(value);
+	};
 	return (
 		<div css={css([FlexCenter, Container])}>
 			<FontAwesomeIcon icon={faSearch} css={Icon} />
-			<input placeholder="Pesquisar..." css={css([Input])} onInput={() => {}} />
+			<input placeholder="Pesquisar..." css={css([Input])} onInput={onInput} />
 		</div>
 	);
 }

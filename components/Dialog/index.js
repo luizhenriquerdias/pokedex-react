@@ -45,7 +45,7 @@ const cssPokeball = css`
 	position: absolute;
 	height: 200px;
 	right: -30px;
-	top: 30px;
+	top: 40px;
 `;
 
 const cssPokemon = css`

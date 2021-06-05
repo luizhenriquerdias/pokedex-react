@@ -1,8 +1,9 @@
 import { css } from '@emotion/react';
+import { useContext } from 'react';
+import { ThemeContext } from '../../providers/theme';
 
 const cssBody = css`
 	height: 60%;
-	background: black;
 	border-top-left-radius: 40px;
 	border-top-right-radius: 40px;
 	position: absolute;
@@ -13,5 +14,17 @@ const cssBody = css`
 `;
 
 export default function Body() {
-	return <div css={cssBody}>oi</div>;
+	const { theme } = useContext(ThemeContext);
+	return (
+		<div
+			css={css([
+				cssBody,
+				css`
+					background: ${theme.colors.background};
+				`
+			])}
+		>
+			oi
+		</div>
+	);
 }
