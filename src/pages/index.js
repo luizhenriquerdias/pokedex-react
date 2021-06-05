@@ -1,7 +1,8 @@
 import { css, useTheme } from '@emotion/react';
 import React, { Fragment, useContext, useState } from 'react';
 import Card from '../components/Card';
-import Dialog from '../components/Dialog';
+import ClientOnlyPortal from '../components/ClientOnlyPortal';
+import ModalPokemon from '../components/ModalPokemon';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PokemonsContext } from '../providers/pokemons';
@@ -27,7 +28,11 @@ export default function Home() {
 
 	return (
 		<Fragment>
-			{dialog ? <Dialog pokemon={pokemon} close={() => onClick(null)} /> : null}
+			{dialog && (
+				<ClientOnlyPortal selector="#modal">
+					<ModalPokemon pokemon={pokemon} close={() => onClick(null)} />
+				</ClientOnlyPortal>
+			)}
 			<main
 				css={css`
 					background: ${theme.colors.background};

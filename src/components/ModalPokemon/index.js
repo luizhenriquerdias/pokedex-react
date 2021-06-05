@@ -61,7 +61,7 @@ const cssTitleBar = css`
 	margin-top: 24px;
 `;
 
-export default function Dialog({ pokemon, close }) {
+export default function ModalPokemon({ pokemon, close }) {
 	const theme = useTheme();
 	return (
 		<div css={css([cssDialog, FlexCenter])}>
