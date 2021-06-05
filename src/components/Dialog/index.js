@@ -72,7 +72,10 @@ export default function Dialog({ pokemon, close }) {
 			<div
 				css={css([
 					cssContainer,
-					getBackgroundColorByType(theme, pokemon.types[0].type.name)
+					`background: ${getBackgroundColorByType(
+						theme,
+						pokemon.types[0].type.name
+					)}`
 				])}
 			>
 				<div css={cssCloseBtn}>

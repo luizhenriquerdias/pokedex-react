@@ -6,7 +6,7 @@ import Pokeball from '../assets/pokeball.svg';
 import { ThemeContext } from '../providers/theme';
 import { getBackgroundColorByType, getColor } from '../util/functions';
 
-const Container = css`
+const Container = ({ theme, type }) => css`
 	margin: 0.6rem;
 	border-radius: 20px;
 	position: relative;
@@ -16,6 +16,7 @@ const Container = css`
 	overflow: hidden;
 	max-width: 450px;
 	transition: all 0.6s cubic-bezier(0.165, 0.84, 0.44, 1);
+	background: ${getBackgroundColorByType(theme, type)};
 
 	&:hover {
 		transform: scale(1.05, 1.05);
@@ -52,13 +53,9 @@ export default function Card({ name, onClick }) {
 
 	if (!data) return <span>{name}</span>;
 	return (
-		// eslint-disable-next-line
 		<div
 			onClick={onClick ? () => onClick(data) : () => {}}
-			css={css([
-				Container,
-				getBackgroundColorByType(theme, data.types[0].type.name)
-			])}
+			css={Container({ theme, type: data.types[0].type.name })}
 		>
 			<img
 				css={Img}

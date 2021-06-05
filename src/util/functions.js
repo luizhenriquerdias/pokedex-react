@@ -55,11 +55,11 @@ const generateHslStr = (hue, saturation, light) =>
 	`hsl(${hue}, ${saturation}%, ${light}%)`;
 
 const getBackgroundStr = ({ hue, saturation, light }) =>
-	`background: linear-gradient(135deg, ${generateHslStr(
+	`linear-gradient(135deg, ${generateHslStr(
 		hue,
 		saturation,
 		light
-	)}, ${generateHslStr(hue, saturation, light + 10)})}`;
+	)}, ${generateHslStr(hue, saturation, light + 10)})`;
 
 export const getColor = (theme, type) => {
 	let hsl = getHSL(type);
