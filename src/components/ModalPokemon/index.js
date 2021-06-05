@@ -35,10 +35,23 @@ const Styles = {
 	Container: (theme, type) => css`
 		position: relative;
 		border-radius: 20px;
-		width: 400px;
+		width: 350px;
 		height: 90%;
 		overflow: hidden;
 		background: ${getBackgroundColorByType(theme, type)};
+
+		&::after {
+			content: '';
+			height: 60%;
+			border-top-left-radius: 40px;
+			border-top-right-radius: 40px;
+			position: absolute;
+			z-index: 1;
+			bottom: 0;
+			left: 0;
+			right: 0;
+			background: ${theme.colors.background};
+		}
 	`,
 
 	CloseBtn: css`
@@ -56,13 +69,13 @@ const Styles = {
 
 	Pokemon: css`
 		position: absolute;
-		z-index: 5;
-		top: 90px;
+		z-index: 2;
+		top: 95px;
 		left: 0;
 		right: 0;
 		margin-left: auto;
 		margin-right: auto;
-		height: 200px;
+		height: 150px;
 	`,
 
 	TitleBar: css`
@@ -109,7 +122,7 @@ export default function ModalPokemon({ pokemon, close }) {
 						{getPokemonId(pokemon)}
 					</span>
 				</div>
-				<Body />
+				<Body pokemon={pokemon} />
 			</div>
 		</div>
 	);
