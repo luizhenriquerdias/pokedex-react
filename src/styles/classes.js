@@ -30,3 +30,10 @@ export const Montserrat = css`
 export const TextBold = css`
 	font-weight: bold;
 `;
+
+export const AbsuluteCenter = css`
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+`;

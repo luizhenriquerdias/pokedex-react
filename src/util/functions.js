@@ -73,7 +73,7 @@ export const getBackgroundColorByType = (theme, type) => {
 	return getBackgroundStr(hsl);
 };
 
-export const getPokemonType = pokemon => pokemon.types[0].type.name;
+export const getPokemonType = pokemon => pokemon?.types[0].type.name;
 
 export const getPokemonName = pokemon =>
 	pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
