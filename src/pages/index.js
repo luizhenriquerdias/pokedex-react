@@ -1,11 +1,10 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import React, { useContext, useState } from 'react';
 import Card from '../components/Card';
 import Dialog from '../components/Dialog';
 import Footer from '../components/Footer';
 import Header from '../components/Header';
 import { PokemonsContext } from '../providers/pokemons';
-import { ThemeContext } from '../providers/theme';
 import { Flex, JustifyCenter } from '../styles/classes';
 
 const GridContainer = css`
@@ -16,7 +15,7 @@ const GridContainer = css`
 `;
 
 export default function Home() {
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
 	const { pokemons } = useContext(PokemonsContext);
 	const [dialog, setDialog] = useState(false);
 	const [pokemon, setPokemon] = useState(null);

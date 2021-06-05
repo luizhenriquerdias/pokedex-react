@@ -4,7 +4,6 @@ import { PokemonsContext } from '../providers/pokemons';
 import { AlignCenter, Flex, SpaceBetween } from '../styles/classes';
 import Paginator from './Paginator';
 import LinkedIn from '../assets/linkedin.svg';
-import { ThemeContext } from '../providers/theme';
 
 const cssFooter = css`
 	background: rgba(255, 255, 255, 0.2);

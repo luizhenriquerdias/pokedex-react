@@ -1,9 +1,8 @@
-import { css } from '@emotion/react';
-import { useContext } from 'react';
+import { css, useTheme } from '@emotion/react';
+
 import { show } from '../api';
 import Chip from './Atoms/Chip';
 import Pokeball from '../assets/pokeball.svg';
-import { ThemeContext } from '../providers/theme';
 import { getBackgroundColorByType, getColor } from '../util/functions';
 
 const Container = ({ theme, type }) => css`
@@ -49,7 +48,7 @@ const Id = css`
 
 export default function Card({ name, onClick }) {
 	const { data } = show(name);
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
 
 	if (!data) return <span>{name}</span>;
 	return (

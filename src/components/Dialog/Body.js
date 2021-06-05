@@ -1,6 +1,4 @@
-import { css } from '@emotion/react';
-import { useContext } from 'react';
-import { ThemeContext } from '../../providers/theme';
+import { css, useTheme } from '@emotion/react';
 
 const cssBody = css`
 	height: 60%;
@@ -14,7 +12,8 @@ const cssBody = css`
 `;
 
 export default function Body() {
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
+
 	return (
 		<div
 			css={css([

@@ -1,7 +1,6 @@
 import { css } from '@emotion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
-import { useState } from 'react';
 import { FlexCenter } from '../../styles/classes';
 
 const Container = css`

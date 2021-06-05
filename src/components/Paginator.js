@@ -1,11 +1,9 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import {
 	faChevronLeft,
 	faChevronRight
 } from '@fortawesome/free-solid-svg-icons';
-import { useContext } from 'react';
-import { ThemeContext } from '../providers/theme';
-import { Flex, FlexCenter, Montserrat, TextBold } from '../styles/classes';
+import { FlexCenter, Montserrat, TextBold } from '../styles/classes';
 import Button from './Atoms/Button';
 
 export default function Paginator({
@@ -14,7 +12,7 @@ export default function Paginator({
 	nextPage,
 	previousPage
 }) {
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
 	return (
 		<div css={css([FlexCenter])}>
 			<Button icon={faChevronLeft} onClick={previousPage} size="2x" />

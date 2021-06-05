@@ -1,7 +1,5 @@
-import { css } from '@emotion/react';
+import { css, useTheme } from '@emotion/react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useContext } from 'react';
-import { ThemeContext } from '../../providers/theme';
 
 const Style = css`
 	background: rgba(255, 255, 255, 0.4);
@@ -19,7 +17,7 @@ const withIcon = css`
 `;
 
 export default function Button({ onClick, label, icon, size }) {
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
 	return (
 		<button
 			css={css([Style, icon ? withIcon : null])}

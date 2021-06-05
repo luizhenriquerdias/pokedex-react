@@ -1,7 +1,5 @@
-import { css } from '@emotion/react';
-import { useContext } from 'react';
+import { css, useTheme } from '@emotion/react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
-import { ThemeContext } from '../../providers/theme';
 import {
 	Flex,
 	FlexCenter,
@@ -12,7 +10,6 @@ import {
 import Body from './Body';
 import Pokeball from '../../assets/pokeball.svg';
 import Button from '../Atoms/Button';
-import { show } from '../../api';
 import Chip from '../Atoms/Chip';
 import { getBackgroundColorByType, getColor } from '../../util/functions';
 
@@ -65,8 +62,7 @@ const cssTitleBar = css`
 `;
 
 export default function Dialog({ pokemon, close }) {
-	console.log(pokemon);
-	const { theme } = useContext(ThemeContext);
+	const theme = useTheme();
 	return (
 		<div css={css([cssDialog, FlexCenter])}>
 			<div
