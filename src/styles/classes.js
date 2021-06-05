@@ -17,6 +17,10 @@ export const SpaceBetween = css`
 	justify-content: space-between;
 `;
 
+export const SpaceAround = css`
+	justify-content: space-around;
+`;
+
 export const FlexCenter = css([Flex, AlignCenter, JustifyCenter]);
 
 export const Poppins = css`
@@ -36,4 +40,8 @@ export const AbsuluteCenter = css`
 	top: 50%;
 	left: 50%;
 	transform: translate(-50%, -50%);
+`;
+
+export const Pointer = css`
+	cursor: pointer;
 `;

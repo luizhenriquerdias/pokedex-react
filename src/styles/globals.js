@@ -5,6 +5,7 @@ export const globalStyles = (
 		styles={css`
 			html,
 			body {
+				color: #444;
 				overflow: hidden;
 				font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
 					Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
