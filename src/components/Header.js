@@ -1,7 +1,7 @@
 import { css, useTheme } from '@emotion/react';
 import { Fragment, useContext } from 'react';
 import SearchBar from './Atoms/SearchBar';
-import ToggleTheme from './Atoms/ToggleTheme';
+import Switch from './Atoms/Switch';
 import Pokeball from '../assets/pokeball.svg';
 import { FlexCenter } from '../styles/classes';
 import { PokemonsContext } from '../providers/pokemons';
@@ -46,7 +46,7 @@ export default function Header() {
 			>
 				<img css={AbsoluteImage} src={Pokeball} />
 				<div css={AbsoluteRight}>
-					<ToggleTheme
+					<Switch
 						onChange={theme.change}
 						defaultChecked={theme.name === 'light'}
 					/>
