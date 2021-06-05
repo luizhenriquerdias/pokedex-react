@@ -1,5 +1,5 @@
 import { css, useTheme } from '@emotion/react';
-import React, { useContext, useState } from 'react';
+import React, { Fragment, useContext, useState } from 'react';
 import Card from '../components/Card';
 import Dialog from '../components/Dialog';
 import Footer from '../components/Footer';
@@ -26,7 +26,7 @@ export default function Home() {
 	};
 
 	return (
-		<>
+		<Fragment>
 			{dialog ? <Dialog pokemon={pokemon} close={() => onClick(null)} /> : null}
 			<main
 				css={css`
@@ -41,6 +41,6 @@ export default function Home() {
 				</div>
 				<Footer />
 			</main>
-		</>
+		</Fragment>
 	);
 }

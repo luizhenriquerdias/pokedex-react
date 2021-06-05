@@ -14,6 +14,7 @@ module.exports = {
 	},
 	plugins: ['react', '@emotion'],
 	rules: {
+		'react/jsx-fragments': 'off',
 		'react/jsx-indent': [2, 'tab'],
 		'react/jsx-indent-props': [2, 'tab'],
 		'react/jsx-filename-extension': 'off',

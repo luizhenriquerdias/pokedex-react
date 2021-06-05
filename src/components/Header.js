@@ -1,5 +1,5 @@
 import { css, useTheme } from '@emotion/react';
-import { useContext } from 'react';
+import { Fragment, useContext } from 'react';
 import SearchBar from './Atoms/SearchBar';
 import ToggleTheme from './Atoms/ToggleTheme';
 import Pokeball from '../assets/pokeball.svg';
@@ -35,7 +35,7 @@ export default function Header() {
 	const { setSearch } = useContext(PokemonsContext);
 
 	return (
-		<>
+		<Fragment>
 			<div
 				css={css([
 					HeaderStyle,
@@ -69,6 +69,6 @@ export default function Header() {
 			>
 				<SearchBar onSearch={setSearch} />
 			</div>
-		</>
+		</Fragment>
 	);
 }
