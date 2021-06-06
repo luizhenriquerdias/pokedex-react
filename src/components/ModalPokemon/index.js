@@ -43,8 +43,8 @@ const Styles = {
 		&::after {
 			content: '';
 			height: 60%;
-			border-top-left-radius: 40px;
-			border-top-right-radius: 40px;
+			border-top-left-radius: 20px;
+			border-top-right-radius: 20px;
 			position: absolute;
 			z-index: 1;
 			bottom: 0;
@@ -112,7 +112,7 @@ export default function ModalPokemon({ pokemon, close }) {
 						{pokemon.types.map(({ type, slot }) => (
 							<Chip
 								inline
-								labelColor={getColor(theme, pokemon.types[0].type.name)}
+								labelColor={getColor(theme, type.name)}
 								key={slot}
 								label={type.name}
 							/>

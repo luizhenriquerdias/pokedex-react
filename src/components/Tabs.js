@@ -1,11 +1,14 @@
 import { css } from '@emotion/react';
 import { cloneElement, useState } from 'react';
-import { Pointer, Flex, SpaceAround } from '../styles/classes';
+import { Pointer, Flex, SpaceAround, FullHeight } from '../styles/classes';
+
+const tabsHeight = 54;
 
 const Styles = {
 	Tabs: css`
 		${Flex};
 		${SpaceAround};
+		height: ${tabsHeight}px;
 	`,
 
 	Tab: isActive => css`
@@ -30,10 +33,34 @@ const Styles = {
 
 	TabContent: css`
 		padding: 16px;
+		height: calc(100% - ${tabsHeight}px);
+		overflow-y: auto;
+
+		/* width */
+		&::-webkit-scrollbar {
+			width: 7px;
+		}
+
+		/* Track */
+		&::-webkit-scrollbar-track {
+			background: #555;
+			border-radius: 7px;
+		}
+
+		/* Handle */
+		&::-webkit-scrollbar-thumb {
+			background: #888;
+			border-radius: 7px;
+		}
+
+		/* Handle on hover */
+		&::-webkit-scrollbar-thumb:hover {
+			background: #f1f1f1;
+		}
 	`
 };
 
-export function Tabs({ defaultActiveIndex, className, children }) {
+export function Tabs({ defaultActiveIndex, children }) {
 	const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || 0);
 
 	const handleTabClick = tabIndex => {
@@ -42,6 +69,7 @@ export function Tabs({ defaultActiveIndex, className, children }) {
 
 	const cloneTabElement = (tab, index = 0) =>
 		cloneElement(tab, {
+			key: index,
 			onClick: () => handleTabClick(index),
 			tabIndex: index,
 			isActive: index === activeIndex
@@ -58,7 +86,7 @@ export function Tabs({ defaultActiveIndex, className, children }) {
 	};
 
 	return (
-		<section className={`tabs ${className}`}>
+		<section css={FullHeight}>
 			<div css={Styles.Tabs}>{renderChildrenTabs()}</div>
 			<div css={Styles.TabContent}>{renderActiveTabContent()}</div>
 		</section>

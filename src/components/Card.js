@@ -93,7 +93,7 @@ export default function Card({ name, onClick }) {
 					<span css={Styles.Id(theme)}>{getPokemonId(pokemon)}</span>
 					{pokemon.types.map(({ type, slot }) => (
 						<Chip
-							labelColor={getColor(theme, getPokemonType(pokemon))}
+							labelColor={getColor(theme, type.name)}
 							key={slot}
 							label={type.name}
 						/>

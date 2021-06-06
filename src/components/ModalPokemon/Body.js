@@ -1,5 +1,8 @@
-import { css, useTheme } from '@emotion/react';
+import { css } from '@emotion/react';
 import { Tabs, Tab } from '../Tabs';
+import Stats from './Tabs/Stats';
+import Abilities from './Tabs/Abilities';
+import Evolutions from './Tabs/Evolutions';
 
 const Styles = {
 	Body: css`
@@ -13,15 +16,19 @@ const Styles = {
 };
 
 export default function Body({ pokemon }) {
-	const theme = useTheme();
+	console.log(pokemon);
 	return (
 		<div css={Styles.Body}>
 			<Tabs>
 				<Tab label="Stats">
-					<p>content 0</p>
+					<Stats pokemon={pokemon} />
 				</Tab>
-				<Tab label="Abilities">oi</Tab>
-				<Tab label="Evolutions">oi</Tab>
+				<Tab label="Abilities">
+					<Abilities pokemon={pokemon} />
+				</Tab>
+				<Tab label="Evolutions">
+					<Evolutions pokemon={pokemon} />
+				</Tab>
 			</Tabs>
 		</div>
 	);

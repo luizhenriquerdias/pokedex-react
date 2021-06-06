@@ -75,11 +75,21 @@ export const getBackgroundColorByType = (theme, type) => {
 
 export const getPokemonType = pokemon => pokemon?.types[0].type.name;
 
-export const getPokemonName = pokemon =>
-	pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+export const upperCaseFirstLetter = (str = '') =>
+	str.charAt(0).toUpperCase() + str.slice(1);
+
+export const getPokemonName = pokemon => upperCaseFirstLetter(pokemon.name);
 
 export const getPokemonId = pokemon =>
 	`#${String(pokemon.id).padStart(4, '0')}`;
 
 export const getPokemonSprite = pokemon =>
 	pokemon.sprites.other['official-artwork'].front_default;
+
+export const getAbilityDescription = ability => {
+	const entry = ability?.effect_entries.find(
+		({ language }) => language.name === 'en'
+	);
+	if (entry) return entry.effect;
+	return 'No description available';
+};
