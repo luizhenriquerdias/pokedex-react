@@ -93,3 +93,9 @@ export const getAbilityDescription = ability => {
 	if (entry) return entry.effect;
 	return 'No description available';
 };
+
+export const formatStatName = name =>
+	name
+		.split('-')
+		.map(str => upperCaseFirstLetter(str))
+		.join(' ');

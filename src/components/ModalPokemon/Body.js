@@ -1,4 +1,5 @@
 import { css } from '@emotion/react';
+import { useRef, useEffect } from 'react';
 import { Tabs, Tab } from '../Tabs';
 import Stats from './Tabs/Stats';
 import Abilities from './Tabs/Abilities';
@@ -16,10 +17,15 @@ const Styles = {
 };
 
 export default function Body({ pokemon }) {
-	console.log(pokemon);
+	const tabsRef = useRef();
+
+	useEffect(() => {
+		if (tabsRef.current) tabsRef.current.setActiveIndex(0);
+	}, [pokemon]);
+
 	return (
 		<div css={Styles.Body}>
-			<Tabs>
+			<Tabs ref={tabsRef}>
 				<Tab label="Stats">
 					<Stats pokemon={pokemon} />
 				</Tab>

@@ -1,6 +1,13 @@
 import { css } from '@emotion/react';
-import { cloneElement, useState } from 'react';
-import { Pointer, Flex, SpaceAround, FullHeight } from '../styles/classes';
+import { cloneElement, useState, forwardRef, useImperativeHandle } from 'react';
+import {
+	Pointer,
+	Flex,
+	SpaceAround,
+	FullHeight,
+	PaddingX,
+	PaddingY
+} from '../styles/classes';
 
 const tabsHeight = 54;
 
@@ -32,7 +39,8 @@ const Styles = {
 	`,
 
 	TabContent: css`
-		padding: 16px;
+		${PaddingY(8)}
+		${PaddingX(32)}
 		height: calc(100% - ${tabsHeight}px);
 		overflow-y: auto;
 
@@ -60,8 +68,12 @@ const Styles = {
 	`
 };
 
-export function Tabs({ defaultActiveIndex, children }) {
+export const Tabs = forwardRef(({ defaultActiveIndex, children }, ref) => {
 	const [activeIndex, setActiveIndex] = useState(defaultActiveIndex || 0);
+
+	useImperativeHandle(ref, () => ({
+		setActiveIndex
+	}));
 
 	const handleTabClick = tabIndex => {
 		if (tabIndex !== activeIndex) setActiveIndex(tabIndex);
@@ -86,12 +98,12 @@ export function Tabs({ defaultActiveIndex, children }) {
 	};
 
 	return (
-		<section css={FullHeight}>
+		<section css={FullHeight} ref={ref}>
 			<div css={Styles.Tabs}>{renderChildrenTabs()}</div>
 			<div css={Styles.TabContent}>{renderActiveTabContent()}</div>
 		</section>
 	);
-}
+});
 
 export function Tab({ label, isActive, onClick }) {
 	return (
