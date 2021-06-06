@@ -1,7 +1,7 @@
 import { ThemeProvider } from '@emotion/react';
 import { useState } from 'react';
 import { PokemonsProvider } from '../providers/pokemons';
-import { globalStyles } from '../styles/globals';
+import GlobalStyles from '../styles/globals';
 import dark from '../styles/themes/dark';
 import light from '../styles/themes/light';
 
@@ -13,7 +13,7 @@ export default function MyApp({ Component, pageProps }) {
 	return (
 		<ThemeProvider theme={{ ...theme, change }}>
 			<PokemonsProvider>
-				{globalStyles}
+				<GlobalStyles />
 				<Component {...pageProps} />
 			</PokemonsProvider>
 		</ThemeProvider>
