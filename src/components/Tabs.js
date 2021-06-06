@@ -27,7 +27,6 @@ const Styles = {
 		css`
 			&::after {
 				position: absolute;
-				display: block;
 				content: '';
 				height: 2px;
 

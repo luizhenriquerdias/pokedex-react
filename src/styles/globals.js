@@ -21,6 +21,11 @@ export default function globalStyles() {
 					box-sizing: border-box;
 				}
 
+				*::before,
+				*::after {
+					display: block;
+				}
+
 				main {
 					height: 100vh;
 					overflow-y: auto;

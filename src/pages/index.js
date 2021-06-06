@@ -1,5 +1,5 @@
 import { css, useTheme } from '@emotion/react';
-import React, { Fragment, useContext, useEffect, useState } from 'react';
+import React, { Fragment, useContext } from 'react';
 import Card from '../components/Card';
 import ClientOnlyPortal from '../components/ClientOnlyPortal';
 import ModalPokemon from '../components/ModalPokemon';
@@ -15,7 +15,7 @@ const Styles = {
 
 	GridContainer: css`
 		${PokemonGrid};
-		padding-bottom: 56px;
+		margin-bottom: 56px;
 	`
 };
 

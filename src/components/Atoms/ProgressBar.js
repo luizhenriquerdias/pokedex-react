@@ -18,7 +18,6 @@ const Styles = {
 
 		&::after {
 			border-radius: inherit;
-			display: block;
 			content: '';
 			width: calc(100% - ${val}%);
 			height: 100%;
