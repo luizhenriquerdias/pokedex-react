@@ -1,6 +1,7 @@
+import { css } from '@emotion/react';
 import { useEffect, useState } from 'react';
 import { fetchAbilityByName } from '../../../api';
-import { MarginBottom } from '../../../styles/classes';
+import { MarginBottom, Poppins, TextBold } from '../../../styles/classes';
 import {
 	getAbilityDescription,
 	upperCaseFirstLetter
@@ -23,7 +24,9 @@ export default function Abilities({ pokemon }) {
 		<div>
 			{pokemon.abilities.map(({ ability, slot }, i) => (
 				<div css={MarginBottom(16)} key={slot}>
-					<h3>{upperCaseFirstLetter(ability.name)}</h3>
+					<div css={css([Poppins, TextBold])}>
+						{upperCaseFirstLetter(ability.name)}
+					</div>
 					<span>{getAbilityDescription(abilities[i])}</span>
 				</div>
 			))}
