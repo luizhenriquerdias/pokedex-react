@@ -35,7 +35,7 @@ export default function Home() {
 	const mainRef = useRef();
 
 	useEffect(() => {
-		mainRef.current.scrollTo({ top: 100, behavior: 'smooth' });
+		mainRef.current.scrollTo({ top: 0, behavior: 'smooth' });
 	}, [pokemons]);
 
 	return (
