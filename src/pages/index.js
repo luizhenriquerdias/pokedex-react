@@ -1,5 +1,5 @@
 import { css, useTheme } from '@emotion/react';
-import React, { Fragment, useContext } from 'react';
+import React, { Fragment, useContext, useEffect, useRef } from 'react';
 import Card from '../components/Card';
 import ClientOnlyPortal from '../components/ClientOnlyPortal';
 import ModalPokemon from '../components/ModalPokemon';
@@ -15,7 +15,15 @@ const Styles = {
 
 	GridContainer: css`
 		${PokemonGrid};
-		margin-bottom: 56px;
+		padding-bottom: 56px;
+
+		@supports (-webkit-touch-callout: none) {
+			&::after {
+				content: ' ';
+				height: 112px;
+				width: 100%;
+			}
+		}
 	`
 };
 
@@ -23,6 +31,12 @@ export default function Home() {
 	const theme = useTheme();
 	const { pokemons, setSelectedPokemon, selectedPokemon } =
 		useContext(PokemonsContext);
+
+	const mainRef = useRef();
+
+	useEffect(() => {
+		mainRef.current.scrollTo({ top: 100, behavior: 'smooth' });
+	}, [pokemons]);
 
 	return (
 		<Fragment>
@@ -34,7 +48,7 @@ export default function Home() {
 					/>
 				</ClientOnlyPortal>
 			)}
-			<main css={Styles.Main(theme)}>
+			<main ref={mainRef} css={Styles.Main(theme)}>
 				<Header />
 				<div css={Styles.GridContainer}>
 					{pokemons?.slice(0, 20).map(poke => (
