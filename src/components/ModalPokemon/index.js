@@ -1,5 +1,6 @@
 import { css, useTheme } from '@emotion/react';
 import { faTimes } from '@fortawesome/free-solid-svg-icons';
+import { useEffect, useState } from 'react';
 import {
 	Flex,
 	FlexCenter,
@@ -19,8 +20,10 @@ import {
 	getPokemonType
 } from '../../util/functions';
 
+const transition = 'all 500ms ease-in-out';
+
 const Styles = {
-	Backdrop: css`
+	Backdrop: open => css`
 		${FlexCenter}
 		position: absolute;
 		top: 0;
@@ -30,15 +33,20 @@ const Styles = {
 		z-index: 999;
 		background: rgba(0, 0, 0, 0.5);
 		backdrop-filter: blur(2px);
+		opacity: ${open ? 1 : 0};
+		transition: ${transition};
 	`,
 
-	Container: (theme, type) => css`
+	Container: (theme, type, open) => css`
 		position: relative;
 		border-radius: 20px;
 		width: 350px;
 		height: 90%;
 		overflow: hidden;
 		background: ${getBackgroundColorByType(theme, type)};
+
+		transform: translateY(${open ? 0 : 100}%);
+		transition: ${transition};
 
 		&::after {
 			content: '';
@@ -93,11 +101,25 @@ const Styles = {
 
 export default function ModalPokemon({ pokemon, close }) {
 	const theme = useTheme();
+	const [open, setOpen] = useState(false);
+	useEffect(() => {
+		setTimeout(() => {
+			setOpen(true);
+		}, 5);
+	}, []);
+
+	const onClose = () => {
+		setOpen(false);
+		setTimeout(() => {
+			close();
+		}, 450);
+	};
+
 	return (
-		<div css={Styles.Backdrop}>
-			<div css={Styles.Container(theme, getPokemonType(pokemon))}>
+		<div css={Styles.Backdrop(open)}>
+			<div css={Styles.Container(theme, getPokemonType(pokemon), open)}>
 				<div css={Styles.CloseBtn}>
-					<Button icon={faTimes} onClick={close} />
+					<Button icon={faTimes} onClick={onClose} />
 				</div>
 				<img
 					css={Styles.Pokemon}
