@@ -1,8 +1,8 @@
 /* eslint-disable indent */
 import { css, useTheme } from '@emotion/react';
 
-import { Fragment } from 'react';
-import { show } from '../api';
+import { Fragment, useEffect, useState } from 'react';
+import { fetchPokemonByName } from '../api';
 import Chip from './Atoms/Chip';
 import Spinner from './Atoms/Spinner';
 import Pokeball from '../assets/pokeball.svg';
@@ -73,9 +73,12 @@ const Styles = {
 };
 
 export default function Card({ name, onClick }) {
-	const { data } = show(name);
-	const pokemon = data;
+	const [pokemon, setPokemon] = useState(null);
 	const theme = useTheme();
+
+	useEffect(() => {
+		fetchPokemonByName(name).then(setPokemon);
+	}, []);
 
 	return (
 		<div

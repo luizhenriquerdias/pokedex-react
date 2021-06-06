@@ -26,7 +26,7 @@ export default function Body({ pokemon }) {
 				<Tab label="Abilities">
 					<Abilities pokemon={pokemon} />
 				</Tab>
-				<Tab label="Evolutions">
+				<Tab label="Evolution Chain">
 					<Evolutions pokemon={pokemon} />
 				</Tab>
 			</Tabs>

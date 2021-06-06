@@ -80,3 +80,20 @@ export const MarginAll = px => css`
 export const FullHeight = css`
 	height: 100%;
 `;
+
+export const FullWidth = css`
+	width: 100%;
+`;
+
+export const Fit = css`
+	${FullHeight};
+	${FullWidth}
+`;
+
+export const PokemonGrid = css`
+	${Flex};
+	${JustifyCenter};
+	> div {
+		flex: 1 1 200px;
+	}
+`;

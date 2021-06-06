@@ -1,9 +1,8 @@
-import swr from 'swr';
 import { api } from './axios';
 
-const getFullUrl = url => `${api.defaults.baseURL}/${url}`;
-const useSWR = url => swr(getFullUrl(url), api.get(url));
-
-export const index = () => useSWR('pokemon?limit=100000');
-export const show = name => useSWR(`pokemon/${name}`);
-export const fetchAbilityByName = name => useSWR(`ability/${name}`);
+export const fetchAllPokemons = () => api.get('pokemon?limit=100000');
+export const fetchPokemonByName = name => api.get(`pokemon/${name}`);
+export const fetchAbilityByName = name => api.get(`ability/${name}`);
+export const fetchSpeciesByName = name => api.get(`pokemon-species/${name}`);
+export const fetchEvolutionChainBySpeciesId = id =>
+	api.get(`evolution-chain/${id}`);

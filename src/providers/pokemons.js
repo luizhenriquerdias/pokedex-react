@@ -1,5 +1,5 @@
 import { createContext, useEffect, useState } from 'react';
-import { index } from '../api';
+import { fetchAllPokemons } from '../api';
 
 export const PokemonsContext = createContext();
 
@@ -9,8 +9,11 @@ export const PokemonsProvider = ({ children }) => {
 	const [search, setSearch] = useState('');
 	const [page, setPage] = useState(1);
 	const [totalPages, setTotalPages] = useState(1);
+	const [selectedPokemon, setSelectedPokemon] = useState(null);
 
-	const { data } = index();
+	useEffect(() => {
+		fetchAllPokemons().then(({ results }) => setAllPokemons(results));
+	}, []);
 
 	const pageSize = 20;
 
@@ -23,10 +26,6 @@ export const PokemonsProvider = ({ children }) => {
 		if (page - 1 < 1) return;
 		setPage(page - 1);
 	};
-
-	useEffect(() => {
-		if (data) setAllPokemons(data.results);
-	}, [data]);
 
 	const doFilter = () => {
 		const filteredPokemons = allPokemons.filter(poke =>
@@ -55,7 +54,9 @@ export const PokemonsProvider = ({ children }) => {
 				previousPage,
 				nextPage,
 				totalPages,
-				page
+				page,
+				setSelectedPokemon,
+				selectedPokemon
 			}}
 		>
 			{children}
