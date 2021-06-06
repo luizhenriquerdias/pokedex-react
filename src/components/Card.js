@@ -54,7 +54,7 @@ const Styles = {
 
 	Id: theme => css`
 		position: absolute;
-		top: 16px;
+		top: 4px;
 		z-index: 1;
 		right: 12px;
 		font-weight: bold;
@@ -62,7 +62,7 @@ const Styles = {
 	`,
 
 	Title: (theme, type) => css`
-		margin: 8px 0;
+		margin: 10px 0;
 		color: ${getColor(theme, type)};
 	`,
 

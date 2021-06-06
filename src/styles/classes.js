@@ -125,6 +125,6 @@ export const PokemonGrid = css`
 	${Flex};
 	${JustifyCenter};
 	> div {
-		flex: 1 1 200px;
+		flex: 1 1 175px;
 	}
 `;
