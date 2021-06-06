@@ -77,6 +77,37 @@ export const MarginAll = px => css`
 	${MarginY(px)};
 `;
 
+export const PaddingTop = px => css`
+	padding-top: ${px}px;
+`;
+
+export const PaddingBottom = px => css`
+	padding-bottom: ${px}px;
+`;
+
+export const PaddingLeft = px => css`
+	padding-left: ${px}px;
+`;
+
+export const PaddingRight = px => css`
+	padding-right: ${px}px;
+`;
+
+export const PaddingX = px => css`
+	${PaddingLeft(px)};
+	${PaddingRight(px)};
+`;
+
+export const PaddingY = px => css`
+	${PaddingTop(px)};
+	${PaddingBottom(px)};
+`;
+
+export const PaddingAll = px => css`
+	${PaddingX(px)};
+	${PaddingY(px)};
+`;
+
 export const FullHeight = css`
 	height: 100%;
 `;
